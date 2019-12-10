@@ -11,7 +11,7 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("csherr2510/coursework_2")
+        app = docker.build("csherr2510/coursework-2")
     }
 
     stage('Test image') {
