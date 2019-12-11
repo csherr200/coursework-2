@@ -3,28 +3,21 @@ node {
     def app
 
     stage('Clone repository') {
-        /* Cloning the Repository to our Workspace */
-
         checkout scm
     }
 
     stage('Build image') {
-        /* This builds the actual image */
-
         app = docker.build("csherr2510/coursework-2")
     }
 
-    stage('Test image') {
-        
-        app.inside {
-            echo "Tests passed"
-        }
+  stage('SonarQube Test') {
+    def scannerHome = tool 'SonarScanner 4.0';
+    withSonarQubeEnv('SonarQube') { // If you have configured more than one global server connection, you can specify its name
+      sh "${scannerHome}/bin/sonar-scanner"
     }
+  }
 
     stage('Push image') {
-        /* 
-			You would need to first register with DockerHub before you can push images to your account
-		*/
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
