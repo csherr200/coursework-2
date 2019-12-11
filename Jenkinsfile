@@ -13,7 +13,7 @@ node {
   stage('SonarQube Test') {
     def scannerHome = tool 'SonarQube';
     withSonarQubeEnv('SonarQube') { // If you have configured more than one global server connection, you can specify its name
-      sh "${scannerHome}/bin/sonar-scanner"
+      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=java-jenkins-sonar -Dsonar.sources=."
     }
   }
 
