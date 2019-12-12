@@ -13,7 +13,7 @@ node {
     }
     
     stage('ssh command') {
-      sshCommand remote: remote, command: "ls -lrt"
+      sshCommand remote: remote, command: 'ls'
     }
 }
 
