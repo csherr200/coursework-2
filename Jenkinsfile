@@ -13,7 +13,7 @@ node {
     }
     
     stage('ssh command') {
-      sshCommand remote: remote, command: 'ls'
+      sshCommand remote: remote, sudo: true, command: 'ls'
     }
 }
 
