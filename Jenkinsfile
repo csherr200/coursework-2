@@ -33,6 +33,7 @@ node {
 	stage('ssh command') {
       sshCommand remote: remote, sudo: true, command: 'kubectl create deployment coursework-2 --image=hub.docker.com/repository/docker/csherr2510/coursework-2:latest'
       sshCommand remote: remote, sudo: true, command: 'kubectl scale deployments/coursework-2 --replicas=4'
+      sshCommand remote: remote, sudo: true, command: 'kubectl set image deployments/coursework-2 coursework-2=jocatalin/kubernetes-bootcamp:"${env.BUILD_NUMBER}"'
     }
 }
 
