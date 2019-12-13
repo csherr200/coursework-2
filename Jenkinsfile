@@ -31,7 +31,8 @@ node {
     }
 	
 	stage('ssh command') {
-      sshCommand remote: remote, sudo: true, command: 'pwd'
+      sshCommand remote: remote, sudo: true, command: 'kubectl create deployment coursework-2 --image=https://hub.docker.com/repository/docker/csherr2510/coursework-2:latest'
+      sshCommand remote: remote, sudo: true, command: 'kubectl get deployments'	
     }
 }
 
